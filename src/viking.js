@@ -53,17 +53,53 @@ class War {
         this.saxonArmy = [];
     }
 
-    addViking(Viking){
-        this.vikingArmy.push(Viking);
+    addViking(vikingObj){
+        this.vikingArmy.push(vikingObj);
     }
 
-    addSaxon(Saxon){
-        this.saxonArmy.push(Saxon);
+    addSaxon(saxonObj){
+        this.saxonArmy.push(saxonObj);
     }
 
     vikingAttack(){
-        receiveDamage() = this.strength;
+        let randomVikingIndex = Math.floor(Math.random() * this.vikingArmy.length);
+        let randomSaxonIndex = Math.floor(Math.random() * this.saxonArmy.length);
 
-        this.saxonArmy.pop()
+        let randomViking = this.vikingArmy[randomVikingIndex];
+        let randomSaxon = this.saxonArmy[randomSaxonIndex];
+
+        let finalReturn = randomSaxon.receiveDamage(randomViking.attack());
+
+        if(randomSaxon.health < 0){
+            this.saxonArmy.splice(randomSaxonIndex, 1);
+        } 
+
+        return finalReturn;
     }
+
+    saxonAttack(){
+        let randomVikingIndex = Math.floor(Math.random() * this.vikingArmy.length);
+        let randomSaxonIndex = Math.floor(Math.random() * this.saxonArmy.length);
+
+        let randomViking = this.vikingArmy[randomVikingIndex];
+        let randomSaxon = this.saxonArmy[randomSaxonIndex];
+
+        let finalReturnS = randomViking.receiveDamage(randomSaxon.attack());
+
+        if(randomViking.health < 0){
+            this.vikingArmy.splice(randomVikingIndex, 1);
+        }
+        return finalReturnS;
+    }
+
+    showStatus(){
+        if(this.saxonArmy.length === 0){
+            return `Vikings have won the war of the century!`;
+        } else if (this.vikingArmy.length === 0){
+            return `Saxons have fought for their lives and survived another day...`;
+        } else {
+            return `Vikings and Saxons are still in the thick of battle.`;
+        }
+    }
+    
 }

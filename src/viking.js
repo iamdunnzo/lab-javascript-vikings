@@ -70,10 +70,10 @@ class War {
         let randomViking = this.vikingArmy[randomVikingIndex];
         let randomSaxon = this.saxonArmy[randomSaxonIndex];
 
-        let finalReturn = randomSaxon.receiveDamage(randomViking.attack());
+        let finalReturn = randomSaxon.receiveDamage(randomViking.attack()); //same as randomViking.damage
 
         if(randomSaxon.health < 0){
-            this.saxonArmy.splice(randomSaxonIndex, 1);
+            this.saxonArmy.splice(randomSaxonIndex, 1); //Finds the random Saxon solidier in the SaxonArmy Array that has zerp health and deletes that one element.
         } 
 
         return finalReturn;

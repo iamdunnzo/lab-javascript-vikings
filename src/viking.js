@@ -35,8 +35,10 @@ class Viking extends Soldier {
 
 // Saxon
 class Saxon extends Soldier {
+    //no constructor necessary because paramenter of Saxon are the same as Solider. 
     receiveDamage(damage){
-       this.health -= damage;
+    //    this.health -= damage;
+        super.receiveDamage(damage); //Saxon recieves damage.
 
        if(this.health > 0){
         return `A Saxon has received ${damage} points of damage`;
